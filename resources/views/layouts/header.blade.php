@@ -15,40 +15,47 @@
 <body>
 
 <br><br><br>
+<a  href="{{ route('user-index') }}">
+  <div class="ui container" name="header">
+    <h1>ATM Banking System</h1>
+  </div>
+</a>
 
-<div class="ui container" name="header">
-
-	<h1>ATM Banking System</h1>
-
-</div>
-
-<br><br><br>
+<br>
+<br>
+<br>
 
 <div class="ui container" name="menu" style="background-color: lightblue; width: 90%;">
 
 
-
 	<div class="ui secondary  menu">
-		<a class="item">
-		My Account
+		<a class="item" href="{{ route('user-index') }}">
+		  Dashboard 
 		</a>
-		<a class="active item">
-		Funds Transfer
+		<a class="item" href="{{ route('user-transfer') }}">
+	  	Funds Transfer
 		</a>
-		<a class="item">
-		Transaction History
-		</a>
-		<a class="item">
-		Settings
-		</a>
+		<a class="item" href="{{ route('user-logs') }}">
+  		Transaction History
+    </a>
+    
 		<div class="right menu">
-			<a class="ui item">
+			<a class="ui item" href="{{ route('user-profile') }}">
 			  My Profile
-			</a>
-			<a class="ui item">
-			  Logout
-			</a>
-		</div>
+      </a>
+
+      <div class="right menu" >
+          <a class="ui item" href="{{ route('logout') }}"
+             onclick="event.preventDefault();
+                      document.getElementById('logout-form').submit();">
+              {{ __('Logout') }}
+          </a>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              @csrf
+          </form>
+      </div>
+    </div>
+    
 	</div>
 
 </div>

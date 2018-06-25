@@ -15,9 +15,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', 'HomeController@index')->name('home');
+
+//Authentication Routes
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/transaction', function(){
-    return view('user/transaction');
+//Routes for Users Only
+Route::group(['prefix' => 'user'], function () {
+    Route::get('','NavigationController@index')->name('user-index');
+    Route::get('transfer', 'NavigationController@transfer')->name('user-transfer');
+    Route::get('logs', 'NavigationController@logs')->name('user-logs');
+    Route::get('profile', 'NavigationController@profile')->name('user-profile');
 });
+
+//Routes for Admin Only
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('', function(){
+        return "Admin";
+    });
+});
+
