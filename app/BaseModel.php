@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class BaseModel extends Model
 {
+    //Insert function for database models
     public static function saveData($data){
         try {
             $model = static::getInstance($data);
@@ -37,39 +38,40 @@ class BaseModel extends Model
         }
     }
 
+    //Edit data function for models database
     public static function editData($data){
-
         try {
+            $model = static::getInstance($data);
+            //echo json_encode($data)."<br/>";
 
-            $query = static::getInstance($data);
-            echo json_encode($data)."<br/>";
-
-            if($query->primaryKey == 'id'){
+            if($model->primaryKey == 'id'){
                 $ctr = 0;
-                foreach ($query->fillable as $column){
+                foreach ($model->fillable as $column){
                     if($data[$ctr] === ""){
                         continue;
                     } else {
-                        echo $column." => ".$data[$ctr]."<br/>";
-                        $query[$column] = $data[$ctr];
+                        //echo $column." => ".$data[$ctr]."<br/>";
+                        $model[$column] = array_pull($data, $column);
                     }
                     $ctr++;
                 }
 
             } else {
 
-                for ($ctr = 0, $i = 1; $ctr < sizeof($data) and $i < sizeof($query->fillable); $ctr++, $i++){
-                    echo $i." ".$query->fillable[$i]." => ".$data[$ctr]."<br/>";
-                    $query[$query->fillable[$i]] = $data[$ctr];
+                for ($ctr = 0, $i = 1; 
+                    $ctr < sizeof($data) and $i < sizeof($model->fillable); 
+                    $ctr++, $i++) {
+                    echo $i." ".$model->fillable[$i]." => ".$data[$ctr]."<br/>";
+                    $model[$model->fillable[$i]] = $data[$ctr];
                 }
             }
 
-            $query->save();
+            $model->save();
 
-            if($query->save()){
+            if($model->save()){
 
                 return array(
-                    'id'        => $query->id,
+                    'id'        => $model->id,
                     'status'    => 'success',
                     'messages'  => 'Saved Successfully!',
                     'code'      => 200
