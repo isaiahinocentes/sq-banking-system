@@ -29,7 +29,6 @@ class Log extends BaseModel
             //Use self ID
             if($recipient_id == auth()->user()->id){
                 return $result = array(
-                    'id'        => 0,
                     'status'    => 'error',
                     'messages'  => 'Can not use Self Account Number',
                     'code'      => 0
@@ -41,7 +40,6 @@ class Log extends BaseModel
             //If the recipient id doesn't exist
             if($Recipient == null){
                 return $result = array(
-                    'id'        => 0,
                     'status'    => 'error',
                     'messages'  => 'Recipient Doesn\' exists!',
                     'code'      => 0
@@ -52,7 +50,6 @@ class Log extends BaseModel
             if($data['amount'] > auth()->user()->balance or 
                 auth()->user()->balance <= 0){
                 return $result = array(
-                    'id'        => 0,
                     'status'    => 'error',
                     'messages'  => 'Amount entered is greater than balance or no balance left',
                     'code'      => 0
@@ -69,18 +66,15 @@ class Log extends BaseModel
                 $data = array_add($data, 'transaction_type', 'fund transfer');
             }
 
-
+            //ONLY SUCCESS PROCESS
             //-----Continue to insert to database----
             return $result = array(
-                'id'        => 200,
                 'status'    => 'success',
                 'messages'  => 'Success validation',
                 'code'      => 200
             );
-
         } else {
             return $result = array(
-                'id'        => 0,
                 'status'    => 'error',
                 'messages'  => 'Null Data At Validation',
                 'code'      => 0

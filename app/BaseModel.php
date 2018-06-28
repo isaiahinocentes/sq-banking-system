@@ -73,7 +73,7 @@ class BaseModel extends Model
                 return array(
                     'id'        => $model->id,
                     'status'    => 'success',
-                    'messages'  => 'Saved Successfully!',
+                    'messages'  => 'Edited Successfully!',
                     'code'      => 200
                 );
 
@@ -83,7 +83,7 @@ class BaseModel extends Model
                     'id'        => 0,
                     'status'    => 'error',
                     't'         => 'An Error has occured!',
-                    'messages'  => 'Please contact iOrthotic support. 1',
+                    'messages'  => 'Can\'t process request.',
                     'code'      => 400
                 );
 
