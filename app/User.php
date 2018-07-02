@@ -31,7 +31,6 @@ class User extends Authenticatable
         try{
 
             $model->balance += $amount;
-
             if($model->save()){
                 return array(
                     'id'        => $model->id,

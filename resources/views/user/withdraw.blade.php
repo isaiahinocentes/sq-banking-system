@@ -5,44 +5,47 @@
 
 <div class="ui container" name="withdraw">
 
-	<h2 class="ui dividing header">Withdraw Money</h2>
+	 {{--  Error Handling, please style this part  --}}
+	 @if($errors->any())
+		<h2>
+			<b> {{ $errors->first('messages') }} </b>
+		</h2> 
+	 @endif
 
-	<table class="ui single line table">
-		<thead>
-			<tr>
-			<th colspan="2">Withdraw Details</th>
+	<h2 class="ui dividing header">Withdraw Money</h2>
+	<form action="{{ route('user-withdraw-query') }}" method="POST" >
+		@csrf
+		<table class="ui single line table">
+			<thead>
+				<tr>
+					<th colspan="2">Withdraw Details</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
 				<td>Account</td>
-				<td>
-					<select class="ui dropdown">
-						<option value="">Choose One</option>
-						<option value="current">Current</option>
-						<option value="savings">Savings</option>
-					</select>
-				</td>
+				<td>Savings</td>
 			</tr>
 			<tr>
 				<td>PIN </td>
 				<td>
-					<input type="password" name="pin" value="" class="ui input" placeholder="Input PIN">
+					<input type="password" name="password" value="" class="ui input" placeholder="Input PIN">
 				</td>
 			</tr>
 			<tr>
 				<td>Amount</td>
 				<td>
-					<input type="number" name="amount" value="" class="ui input" placeholder="Input Amount">
+					<input type="number" name="amount" value="{{ old('amount') }}" class="ui input" placeholder="Input Amount">
 				</td>
 			</tr>
 		</tbody>
-	</table>
-
-	<br><br>
-
-
-	<center><input type="submit" name="withdraw" value="Withdraw Money" class="ui primary button"></center>
+		</table>
+		
+		<br><br>
+		
+		
+		<center><input type="submit" name="withdraw" value="Withdraw Money" class="ui primary button"></center>
+	</form>
 	
 </div>
 

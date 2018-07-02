@@ -26,6 +26,7 @@ class BaseModel extends Model
             }else{
                 throw new \Exception("Database Error");
             }
+            
         } catch (\Exception $e){
             return ( array(
                 'id'        => 0,

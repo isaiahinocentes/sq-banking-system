@@ -25,7 +25,7 @@ Route::group(['prefix' => 'user'], function () {
 
     Route::group(['prefix' => 'withdraw'],function(){
         Route::get('','TransactionsController@withdrawForm')->name('user-withdraw-form');
-        Route::post('query','TransactionsController@depositQry')->name('user-withdraw-query');
+        Route::post('query','TransactionsController@withdrawQry')->name('user-withdraw-query');
     });
 
     Route::group(['prefix' => 'timedeposit'],function(){
