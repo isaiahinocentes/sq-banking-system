@@ -38,7 +38,11 @@ Route::group(['prefix' => 'user'], function () {
         Route::post('query','TransactionsController@paybillsQry')->name('user-paybills-query');
     });
     
-    Route::get('logs', 'NavigationController@logs')->name('user-logs');
+
+    Route::group(['prefix' => 'logs'], function(){
+        Route::get('', 'NavigationController@logs')->name('user-logs');
+    });
+
     Route::get('profile', 'NavigationController@profile')->name('user-profile');
 });
 

@@ -29,6 +29,11 @@ class User extends Authenticatable
 
     public static function updateBalance(User $model, float $amount) : array {
         try{
+            
+            //if deduction will equate to negative balance
+            if($amount < 0 && ($model->balance < $amount)){ 
+                throw new \Exception("Insufficient Funds");
+            }
 
             $model->balance += $amount;
             if($model->save()){

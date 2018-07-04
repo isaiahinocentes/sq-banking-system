@@ -11,18 +11,54 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>BALANCE</td>
-                    <td>
-                        <h1> PHP {{ auth()->user()->balance }} </h1>
-                    </td>
-                </tr>
+                {{--  Account Number  --}}
                 <tr>
                     <td>ACCOUNT NUMBER</td>
                     <td>
                         <h1> {{ auth()->user()->id }} </h1>
                     </td>
                 </tr>
+                
+                {{--  Balance  --}}
+                <tr>
+                    <td>BALANCE</td>
+                    <td>
+                        <h1> PHP {{ auth()->user()->balance }} </h1>
+                    </td>
+                </tr>
+
+                {{--  Time Deposit  --}}
+                <tr>
+                    <td>TIME DEPOSIT</td>
+                    <td>
+                        <ul>
+                            @foreach($data['timedeposits'] as $td)
+                            <li>
+                                Initial Amount: {{ $td->initial_amount }}
+                                <br/>
+                                Interest Rate: {{ $td->interest_rate }}
+                                <br/>
+                                Year/s: {{ $td->min_year }}
+                                <br/>
+                                
+                                {{--  Compute for Expected Amount  --}}
+                                @php
+                                    $expected = 0;
+                                    for($i = 0; $i < $td->min_year; $i++){
+                                        $expected += ($td->initial_amount * ( 1 + $td->interest_rate));
+                                        echo $expected.", ";
+                                    }
+                                @endphp
+
+                                Expected Amount: {{ $expected }}
+                            </li>
+                                
+                            @endforeach
+                        </ul>
+                    </td>
+                </tr>
+
+                {{--  Name  --}}
                 <tr>
                     <td>Name </td>
                     <td>
