@@ -1,13 +1,7 @@
 @extends('layouts.header')
 
 @section('content')
-
-    <br>
-    <br>
-    <br>
-
     <div class="ui container" name="transactiondetails">
-
         <h2 class="ui dividing header">My Transactions</h2>
         @foreach($data['transfers'] as $tr)
             @if($tr->sender_id == auth()->user()->id or 
