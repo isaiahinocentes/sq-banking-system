@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Library\ClassFactory as CF;
 
@@ -9,7 +10,10 @@ class NavigationController extends Controller
 {
     //Nandito yung mga balace, alert, notifications
     public function index(){
-        return view('user/index'); //Return the Dashboard view
+        //$data = auth()->user()->getTransactionsToday(auth()->user());
+        $data = CF::model('User')->getTransactionsToday(auth()->user());
+        return view('user/index')
+            ->with('data', $data); //Return the Dashboard view
     }
 
     public function transfer(){

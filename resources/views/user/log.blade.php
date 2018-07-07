@@ -4,7 +4,7 @@
     <div class="ui container" name="transactiondetails">
         <h2 class="ui dividing header">My Transactions</h2>
         @foreach($data['transfers'] as $tr)
-            @if($tr->sender_id == auth()->user()->id or 
+            @if($tr->sender_id == auth()->user()->id or
                 $tr->recipient_id == auth()->user()->id)
                 <div class="row">
                     <div class="col s12 m12">
@@ -31,7 +31,7 @@
                 </div>
             @endif
         @endforeach
-        
+
         @foreach($data['withdraws'] as $wd)
             @if($wd->account_no == auth()->user()->id)
                 <div class="row">
@@ -91,7 +91,7 @@
                                 <span class="card-title">Time Deposit ID:{{ $td->id }}</span>
                                 <span class="card-body">
                                     <div>
-                                        Initial Amount: {{ $td->intial_amount }}
+                                        Initial Amount: {{ $td->initial_amount }}
                                         <br/>
                                         Intereset Rate: {{ $td->interest_rate }}%
                                         <br/>

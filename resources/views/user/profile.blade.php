@@ -1,9 +1,9 @@
 @extends('layouts.header')
 @section('content')
     <div class="ui container" name="settings">
-    
+
         <h2 class="ui dividing header">Your Profile</h2>
-    
+
         <table class="ui single line table">
             <thead>
                 <tr>
@@ -18,7 +18,7 @@
                         <h1> {{ auth()->user()->id }} </h1>
                     </td>
                 </tr>
-                
+
                 {{--  Balance  --}}
                 <tr>
                     <td>BALANCE</td>
@@ -40,19 +40,18 @@
                                 <br/>
                                 Year/s: {{ $td->min_year }}
                                 <br/>
-                                
+
                                 {{--  Compute for Expected Amount  --}}
                                 @php
                                     $expected = 0;
                                     for($i = 0; $i < $td->min_year; $i++){
                                         $expected += ($td->initial_amount * ( 1 + $td->interest_rate));
-                                        echo $expected.", ";
                                     }
                                 @endphp
 
                                 Expected Amount: {{ $expected }}
                             </li>
-                                
+
                             @endforeach
                         </ul>
                     </td>
@@ -71,23 +70,23 @@
                         {{ auth()->user()->email }}
                     </td>
                 </tr>
-                <tr>
-                    <td>Alternate Email</td>
-                    <td>
-                        {{ auth()->user()->alt_email }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>Mobile Number</td>
-                    <td>
-                        {{ auth()->user()->mobile }}
-                    </td>
-                </tr>
+                {{--<tr>--}}
+                    {{--<td>Alternate Email</td>--}}
+                    {{--<td>--}}
+                        {{--{{ auth()->user()->alt_email }}--}}
+                    {{--</td>--}}
+                {{--</tr>--}}
+                {{--<tr>--}}
+                    {{--<td>Mobile Number</td>--}}
+                    {{--<td>--}}
+                        {{--{{ auth()->user()->mobile }}--}}
+                    {{--</td>--}}
+                {{--</tr>--}}
             </tbody>
         </table>
     </div>
-    
+
     <br>
     <br>
-    <br>    
+    <br>
 @endsection
