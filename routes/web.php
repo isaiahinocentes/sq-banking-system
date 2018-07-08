@@ -12,9 +12,9 @@ Auth::routes();
 //Routes for Users Only
 Route::group(['prefix' => 'user'], function () {
     Route::get('','NavigationController@index')->name('user-index');
-    
+
     Route::group(['prefix' => 'transfer'], function() {
-        Route::get('','NavigationController@transfer')->name('user-transfer');
+        Route::get('','NavigationController@transfer')->name('user-transfer-form');
         Route::post('query', 'TransferController@query')->name('user-query');
     });
 
@@ -37,7 +37,7 @@ Route::group(['prefix' => 'user'], function () {
         Route::get('','TransactionsController@paybillsForm')->name('user-paybills-form');
         Route::post('query','TransactionsController@paybillsQry')->name('user-paybills-query');
     });
-    
+
 
     Route::group(['prefix' => 'logs'], function(){
         Route::get('', 'NavigationController@logs')->name('user-logs');
