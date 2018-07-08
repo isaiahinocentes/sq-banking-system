@@ -61,13 +61,15 @@ class User extends Authenticatable
     }
 
     public static function getTransactionsToday(User $user){
-        return $data = array(
+        $data = array(
             'deposits' => $user->deposits()->whereDate('created_at', Carbon::today())->get(),
             'withdraws' => $user->withdraws()->whereDate('created_at', Carbon::today())->get(),
             'timedeposits' => $user->timedeposits()->whereDate('created_at', Carbon::today())->get(),
             'receives' => $user->receives()->whereDate('created_at', Carbon::today())->get(),
             'transfers' => $user->transfers()->whereDate('created_at', Carbon::today())->get()
         );
+
+        return $data;
     }
 
     /*| -----------------------

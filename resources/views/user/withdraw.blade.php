@@ -9,7 +9,7 @@
 	 @if($errors->any())
 		<h2>
 			<b> {{ $errors->first('messages') }} </b>
-		</h2> 
+		</h2>
 	 @endif
 
 	<h2 class="ui dividing header">Withdraw Money</h2>
@@ -26,8 +26,12 @@
 				<td>Account</td>
 				<td>Savings</td>
 			</tr>
+            <tr>
+                <td>Balance</td>
+                <td>{{ auth()->user()->balance }}</td>
+            </tr>
 			<tr>
-				<td>PIN </td>
+				<td>PIN/Password </td>
 				<td>
 					<input type="password" name="password" value="" class="ui input" placeholder="Input PIN">
 				</td>
@@ -40,14 +44,14 @@
 			</tr>
 		</tbody>
 		</table>
-		
+
 		<br><br>
-		
-		
+
+
 		<center><input type="submit" name="withdraw" value="Withdraw Money" class="ui primary button"></center>
 	</form>
-	
+
 </div>
 
-<br><br><br>    
+<br><br><br>
 @endsection
